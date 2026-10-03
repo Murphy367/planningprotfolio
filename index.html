@@ -7,19 +7,21 @@
 <meta name="description" content="Fashion planning, buying, forecasting and product development work by Murphy (Zhiyi) Tang, Fashion Business Management at FIT.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@300..600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@300..600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout concept: a lookbook spread. Oversized Bodoni over a 12-column grid; every board carries a mono caption like a line sheet (course, season, style no.). */
+/* Layout concept: a lookbook spread. Oversized DM Serif Display over a 12-column grid; every board carries a mono caption like a line sheet (course, season, style no.). */
 :root{
   --paper:#F2F3F0;      /* cool chalk, not cream */
   --surface:#E8E9E5;
   --ink:#151514;
-  --mute:#6B6C66;
+  --mute:#585953;
   --line:rgba(21,21,20,.14);
   --accent:#2E3BB8;     /* "Hawkins" cobalt, from the '80s forecast palette */
   --accent-ink:#FFFFFF;
   --veil:rgba(14,14,13,.92);
-  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --stage:#FFFFFF;      /* light box behind the Style3D renders */
+  --stage-ink:#1A1A1A;
+  --display:"DM Serif Display","Didot",Georgia,serif;
   --body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
   --ease:cubic-bezier(.65,0,.15,1);
@@ -27,11 +29,11 @@
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#121312;--surface:#1B1C1B;--ink:#E9E9E4;--mute:#97988F;--line:rgba(233,233,228,.14);
-  --accent:#A3ABFF;--accent-ink:#0E0F1A;--veil:rgba(6,6,6,.95);color-scheme:dark}}
+  --paper:#121312;--surface:#1B1C1B;--ink:#E9E9E4;--mute:#A6A79E;--line:rgba(233,233,228,.14);
+  --accent:#A3ABFF;--accent-ink:#0E0F1A;--veil:rgba(6,6,6,.95);--stage:#F4F4F1;--stage-ink:#1A1A1A;color-scheme:dark}}
 :root[data-theme="dark"]{
-  --paper:#121312;--surface:#1B1C1B;--ink:#E9E9E4;--mute:#97988F;--line:rgba(233,233,228,.14);
-  --accent:#A3ABFF;--accent-ink:#0E0F1A;--veil:rgba(6,6,6,.95);color-scheme:dark}
+  --paper:#121312;--surface:#1B1C1B;--ink:#E9E9E4;--mute:#A6A79E;--line:rgba(233,233,228,.14);
+  --accent:#A3ABFF;--accent-ink:#0E0F1A;--veil:rgba(6,6,6,.95);--stage:#F4F4F1;--stage-ink:#1A1A1A;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -44,7 +46,7 @@ img{display:block;max-width:100%}
 ::selection{background:var(--accent);color:var(--accent-ink)}
 :focus-visible{outline:1.5px solid var(--accent);outline-offset:3px}
 .wrap{padding-inline:var(--gutter)}
-.mono{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
 .mute{color:var(--mute)}
 .display{font-family:var(--display);font-weight:400;letter-spacing:-.02em;font-optical-sizing:auto}
 h1,h2,h3{margin:0;text-wrap:balance;font-weight:400}
@@ -55,7 +57,7 @@ p{margin:0}
 .cursor{position:fixed;left:0;top:0;pointer-events:none;z-index:200;mix-blend-mode:normal}
 .cursor .dot{position:absolute;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--ink);transition:opacity .2s}
 .cursor .ring{position:absolute;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:var(--accent);color:var(--accent-ink);
-  display:grid;place-items:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;transform:scale(0);transition:transform .45s var(--ease)}
+  display:grid;place-items:center;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;transform:scale(0);transition:transform .45s var(--ease)}
 .cursor.on .ring{transform:scale(1)}
 .cursor.on .dot{opacity:0}
 @media (pointer:coarse){.cursor{display:none}}
@@ -84,7 +86,7 @@ nav.main a:hover::after,nav.main a.active::after,.ul:hover::after{transform:scal
 .hero{padding-top:calc(110px + env(safe-area-inset-top,0px));padding-bottom:40px;position:relative}
 .hero-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--line);padding-bottom:14px}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end;margin-top:clamp(28px,5vw,64px)}
-.name{font-family:var(--display);font-size:clamp(70px,14.5vw,232px);line-height:.84;letter-spacing:-.045em;font-weight:400}
+.name{font-family:var(--display);font-size:clamp(64px,12.5vw,200px);line-height:.92;letter-spacing:-.02em;font-weight:400}
 .name .line{display:block;overflow:hidden;padding-bottom:.06em}
 .name .line span{display:inline-block;animation:rise 1.2s var(--ease) .1s backwards}
 @keyframes rise{from{transform:translateY(105%)}}
@@ -99,7 +101,7 @@ nav.main a:hover::after,nav.main a.active::after,.ul:hover::after{transform:scal
 .deck{position:relative;aspect-ratio:4/3.2;max-width:100%;perspective:1400px}
 .deck figure{position:absolute;inset:0;margin:0;transition:transform .9s var(--ease),box-shadow .6s;transform-origin:50% 100%;cursor:pointer;background:var(--surface)}
 .deck figure img{width:100%;height:100%;object-fit:cover}
-.deck figure figcaption{position:absolute;left:0;bottom:-26px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);opacity:0;transition:opacity .4s}
+.deck figure figcaption{position:absolute;left:0;bottom:-26px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);opacity:0;transition:opacity .4s}
 .deck figure.f0 figcaption{opacity:1}
 .deck figure.f0{transform:translate3d(0,0,0) rotate(0);z-index:4;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
 .deck figure.f1{transform:translate3d(-6%,-5%,0) rotate(-4deg) scale(.94);z-index:3}
@@ -127,7 +129,7 @@ nav.main a:hover::after,nav.main a.active::after,.ul:hover::after{transform:scal
 /* sections */
 section{padding-block:clamp(80px,11vw,160px)}
 .sec-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
-.sec-head h2{font-family:var(--display);font-size:clamp(44px,7vw,108px);line-height:.92;letter-spacing:-.035em}
+.sec-head h2{font-family:var(--display);font-size:clamp(44px,7vw,108px);line-height:.92;letter-spacing:-.015em}
 .sec-head h2 em{font-style:italic}
 .sec-head .lede{max-width:46ch;color:var(--mute);margin-top:18px}
 .kicker{display:flex;gap:14px;align-items:center;margin-bottom:18px}
@@ -136,13 +138,13 @@ section{padding-block:clamp(80px,11vw,160px)}
 /* work controls */
 .controls{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:12px;margin-bottom:40px;position:sticky;top:calc(58px + env(safe-area-inset-top,0px));z-index:20;background:var(--paper)}
 .filters{display:flex;gap:6px;flex-wrap:wrap}
-.chip{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:30px;border:1px solid transparent;transition:border-color .3s,background .3s,color .3s}
+.chip{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:30px;border:1px solid transparent;transition:border-color .3s,background .3s,color .3s}
 .chip sup{font-size:9px;margin-left:3px;color:var(--mute)}
 .chip:hover{border-color:var(--line)}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .chip[aria-pressed="true"] sup{color:inherit;opacity:.6}
 .viewtoggle{display:flex;gap:2px;border:1px solid var(--line);border-radius:30px;padding:3px}
-.viewtoggle button{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:30px;transition:background .3s,color .3s}
+.viewtoggle button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:30px;transition:background .3s,color .3s}
 .viewtoggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 
 /* grid view */
@@ -174,7 +176,7 @@ section{padding-block:clamp(80px,11vw,160px)}
 .view-list .grid{display:none}
 .view-list .list{display:block}
 .row{display:grid;grid-template-columns:56px minmax(0,2.2fr) minmax(0,1.3fr) minmax(0,1fr) 90px;gap:16px;align-items:center;padding-block:22px;border-bottom:1px solid var(--line);cursor:pointer;transition:padding .5s var(--ease),color .3s}
-.row h3{font-family:var(--display);font-size:clamp(24px,3.2vw,46px);line-height:1;letter-spacing:-.025em;transition:transform .6s var(--ease)}
+.row h3{font-family:var(--display);font-size:clamp(24px,3.2vw,46px);line-height:1;letter-spacing:-.01em;transition:transform .6s var(--ease)}
 .row h3 em{font-style:italic}
 .row:hover h3{transform:translateX(14px)}
 .list:hover .row{color:var(--mute)}
@@ -198,7 +200,7 @@ section{padding-block:clamp(80px,11vw,160px)}
 .close:hover .x{transform:rotate(90deg)}
 .ov-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,72px);padding-block:clamp(36px,5vw,72px)}
 .ov-info{position:sticky;top:96px;align-self:start;display:grid;gap:28px}
-.ov-info h2{font-family:var(--display);font-size:clamp(48px,6.4vw,104px);line-height:.9;letter-spacing:-.04em}
+.ov-info h2{font-family:var(--display);font-size:clamp(48px,6.4vw,104px);line-height:.9;letter-spacing:-.015em}
 .ov-info h2 em{font-style:italic}
 .ov-info .tag{font-family:var(--display);font-style:italic;font-size:clamp(19px,1.6vw,24px);line-height:1.3}
 .spec{display:grid;grid-template-columns:110px minmax(0,1fr);border-top:1px solid var(--line)}
@@ -218,7 +220,7 @@ section{padding-block:clamp(80px,11vw,160px)}
 .boards figure:hover img{transform:scale(1.015)}
 .boards figcaption{display:flex;justify-content:space-between;padding-top:8px;color:var(--mute);background:var(--paper)}
 .next-proj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;border-top:1px solid var(--line);padding-block:48px 64px;cursor:pointer}
-.next-proj h3{font-family:var(--display);font-size:clamp(40px,7vw,110px);line-height:.9;letter-spacing:-.04em;transition:color .4s}
+.next-proj h3{font-family:var(--display);font-size:clamp(40px,7vw,110px);line-height:.9;letter-spacing:-.015em;transition:color .4s}
 .next-proj h3 em{font-style:italic}
 .next-proj:hover h3{color:var(--accent)}
 .next-proj .im{aspect-ratio:16/9;overflow:hidden;background:var(--surface)}
@@ -234,13 +236,44 @@ section{padding-block:clamp(80px,11vw,160px)}
 .lb-stage{position:relative;display:grid;place-items:center;padding-inline:var(--gutter);min-height:0}
 .lb-stage img{max-height:100%;max-width:100%;object-fit:contain;transition:opacity .35s,transform .5s var(--ease)}
 .lb-stage img.swap{opacity:0;transform:scale(.985)}
-.lb-btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#EDEDE8;padding:8px 0}
+.lb-btn{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#EDEDE8;padding:8px 0}
 .lb-btn:hover{color:#fff}
 .lb .thumbs{display:flex;gap:6px;overflow-x:auto;max-width:60vw;scrollbar-width:none}
 .lb .thumbs button{flex:0 0 auto;width:54px;height:34px;opacity:.35;transition:opacity .3s}
 .lb .thumbs button.on{opacity:1;outline:1px solid #EDEDE8;outline-offset:2px}
 .lb .thumbs img{width:100%;height:100%;object-fit:cover}
 @media (max-width:700px){.lb .thumbs{display:none}}
+
+/* fitting room: the stage is a white light box in both themes, matching the Style3D renders */
+.fit-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);align-items:start}
+.fit-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.fit-list button{display:grid;grid-template-columns:32px minmax(0,1fr) 46px;gap:12px;align-items:center;width:100%;text-align:left;padding-block:14px;border-bottom:1px solid var(--line);color:var(--mute);transition:color .3s}
+.fit-list button img{width:46px;height:46px;object-fit:cover;object-position:50% 20%;background:var(--stage);opacity:.6;transition:opacity .3s}
+.fit-list button b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(20px,1.8vw,26px);line-height:1.1;color:var(--ink);letter-spacing:-.01em}
+.fit-list button[aria-pressed="true"]{color:var(--ink)}
+.fit-list button[aria-pressed="true"] img,.fit-list button:hover img{opacity:1}
+.fit-list button[aria-pressed="true"] .n{color:var(--accent)}
+.fit-stage{position:relative;aspect-ratio:3/4;background:var(--stage);overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.fit-stage:active{cursor:grabbing}
+.fit-views img{position:absolute;inset:0;mix-blend-mode:multiply;width:100%;height:100%;object-fit:contain;pointer-events:none;will-change:opacity,transform;-webkit-user-drag:none}
+.fit-views img.cover{object-fit:cover}
+.fit-views.swap{opacity:0;transition:opacity .35s}
+.fit-views{position:absolute;inset:0;transition:opacity .35s}
+.fit-hint{position:absolute;left:0;right:0;bottom:14px;text-align:center;color:var(--stage-ink);opacity:.7;transition:opacity .6s;pointer-events:none}
+.fit-hint span{display:inline-block;animation:nudge 1.6s var(--ease) infinite}
+.fit-hint span:last-child{animation-direction:reverse}
+@keyframes nudge{50%{transform:translateX(-5px)}}
+.fit-stage.used .fit-hint{opacity:0}
+.fit-info{display:grid;gap:16px;justify-items:start}
+.fit-info h3{font-family:var(--display);font-weight:400;font-size:clamp(30px,3vw,44px);line-height:1;letter-spacing:-.015em}
+.fit-info .spec{width:100%}
+.dial{width:120px;height:120px}
+.dial text{font-family:var(--mono);font-size:9px;fill:var(--mute);letter-spacing:.06em}
+#dialHand{transform-origin:60px 60px}
+.dial-btns{display:flex;gap:4px;flex-wrap:wrap}
+.dial-btns button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border:1px solid var(--line);border-radius:30px;transition:background .3s,color .3s,border-color .3s}
+.dial-btns button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+@media (max-width:980px){.fit-grid{grid-template-columns:1fr}.fit-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));column-gap:16px}.fit-stage{max-height:78vh;width:100%;margin-inline:auto}}
 
 /* desk */
 .desk-tabs{display:flex;gap:0;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
@@ -258,17 +291,17 @@ section{padding-block:clamp(80px,11vw,160px)}
 .kpis b{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums}
 .chart{position:relative;min-width:0}
 .chart svg{width:100%;height:auto;display:block;overflow:visible}
-.chart text{font-family:var(--mono);font-size:10.5px;fill:var(--mute);letter-spacing:.04em}
+.chart text{font-family:var(--mono);font-size:11.5px;fill:var(--mute);letter-spacing:.04em}
 .chart .gridl{stroke:var(--line);stroke-width:1}
 .tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--paper);padding:10px 12px;font-size:12px;line-height:1.5;min-width:180px;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .3s var(--ease);z-index:3;font-variant-numeric:tabular-nums}
 .tip.on{opacity:1;transform:none}
-.tip b{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:4px}
+.tip b{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:4px}
 .tip .r{display:flex;justify-content:space-between;gap:14px}
 .legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px}
 .legend span{display:flex;gap:8px;align-items:center}
 .legend i{width:10px;height:10px;display:inline-block}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:30px;padding:3px;gap:2px;margin-bottom:18px}
-.seg button{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:30px;transition:background .3s,color .3s}
+.seg button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:30px;transition:background .3s,color .3s}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .vrow{display:grid;grid-template-columns:110px minmax(0,1fr) 70px;gap:14px;align-items:center;padding-block:12px;border-bottom:1px solid var(--line);cursor:default}
 .vrow:first-of-type{border-top:1px solid var(--line)}
@@ -282,7 +315,7 @@ section{padding-block:clamp(80px,11vw,160px)}
 .spm-head h4{margin:0;font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:-.01em}
 .spm-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:center;padding-block:11px;border-bottom:1px solid var(--line);cursor:pointer}
 .spm-row .m{font-size:14px}
-.spm-row .m small{display:block;color:var(--mute);font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase}
+.spm-row .m small{display:block;color:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase}
 .spm-cell{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;align-items:center;font-variant-numeric:tabular-nums;font-size:14px}
 .spm-cell .b{height:6px;background:var(--line);position:relative}
 .spm-cell .b span{position:absolute;inset:0 auto 0 0;background:var(--mute);transition:width 1s var(--ease)}
@@ -306,7 +339,7 @@ section{padding-block:clamp(80px,11vw,160px)}
 .strip{display:flex;height:150px;gap:3px}
 .sw{flex:1 1 0;min-width:0;position:relative;cursor:copy;transition:flex-grow .7s var(--ease);background:var(--c);overflow:hidden}
 .sw:hover,.sw:focus-visible{flex-grow:3.2}
-.sw .lab{position:absolute;left:10px;right:10px;bottom:10px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;line-height:1.4;color:var(--t);opacity:0;transform:translateY(6px);transition:opacity .4s .1s,transform .5s var(--ease) .1s;white-space:nowrap}
+.sw .lab{position:absolute;left:10px;right:10px;bottom:10px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;line-height:1.4;color:var(--t);opacity:0;transform:translateY(6px);transition:opacity .4s .1s,transform .5s var(--ease) .1s;white-space:nowrap}
 .sw .lab strong{display:block;font-family:var(--display);text-transform:none;letter-spacing:0;font-size:17px;font-weight:400;font-style:italic}
 .sw:hover .lab,.sw:focus-visible .lab{opacity:1;transform:none}
 @media (max-width:820px){.pal{grid-template-columns:1fr}.strip{height:110px}}
@@ -322,20 +355,20 @@ section{padding-block:clamp(80px,11vw,160px)}
 .cv dt,.cv dd{margin:0;padding-block:11px;border-bottom:1px solid var(--line)}
 .cv dt b{font-weight:500;display:block}
 .cv dt span{color:var(--mute);font-size:13.5px}
-.cv dd{text-align:right;color:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding-left:12px}
+.cv dd{text-align:right;color:var(--mute);font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding-left:12px}
 .courses{display:flex;flex-wrap:wrap;gap:6px}
 .courses span{border:1px solid var(--line);border-radius:30px;padding:6px 11px;font-size:13px;transition:background .3s,color .3s,border-color .3s}
-.courses span b{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.05em;margin-right:6px;color:var(--mute)}
+.courses span b{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.05em;margin-right:6px;color:var(--mute)}
 .courses span.lit{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .courses span.lit b{color:inherit;opacity:.65}
 @media (max-width:900px){.about-grid{grid-template-columns:1fr}}
 
 /* contact */
 .contact{padding-block:clamp(80px,12vw,180px) 32px;border-top:1px solid var(--line)}
-.contact h2{font-family:var(--display);font-size:clamp(52px,10vw,170px);line-height:.88;letter-spacing:-.045em}
+.contact h2{font-family:var(--display);font-size:clamp(52px,10vw,170px);line-height:.88;letter-spacing:-.02em}
 .contact h2 em{font-style:italic}
 .mail{display:inline-flex;align-items:center;gap:16px;margin-top:40px;font-family:var(--display);font-size:clamp(22px,3vw,40px);letter-spacing:-.01em;position:relative}
-.mail .pill{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--ink);border-radius:30px;padding:8px 14px;transition:background .3s,color .3s}
+.mail .pill{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--ink);border-radius:30px;padding:8px 14px;transition:background .3s,color .3s}
 .mail:hover .pill{background:var(--ink);color:var(--paper)}
 .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:clamp(64px,10vw,140px);padding-top:16px;border-top:1px solid var(--line);color:var(--mute)}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:30px;opacity:0;transition:opacity .3s,transform .5s var(--ease);z-index:300;pointer-events:none}
@@ -362,6 +395,7 @@ section{padding-block:clamp(80px,11vw,160px)}
     <a href="#home" class="brand">Murphy <i>Tang</i></a>
     <nav class="main" aria-label="Sections">
       <a href="#work">Work</a>
+      <a href="#fitting">3D</a>
       <a href="#desk">The Desk</a>
       <a href="#color">Color</a>
       <a href="#about">About</a>
@@ -379,7 +413,7 @@ section{padding-block:clamp(80px,11vw,160px)}
     <div class="hero-meta mono">
       <span>Portfolio · Fashion Planning &amp; Merchandising</span>
       <span class="mute">Fashion Institute of Technology, New York</span>
-      <span>AAS Fashion Business Management · 2024–25</span>
+      <span>B.S. &amp; AAS Fashion Business Management</span>
     </div>
     <div class="hero-grid">
       <div>
@@ -399,7 +433,7 @@ section{padding-block:clamp(80px,11vw,160px)}
       </div>
     </div>
     <div class="ledger">
-      <div><span class="mono mute">Projects shown</span><b id="cntProjects">9</b></div>
+      <div><span class="mono mute">Projects shown</span><b id="cntProjects">10</b></div>
       <div><span class="mono mute">Retail planned · Catch SS26</span><b>$942,780</b></div>
       <div><span class="mono mute">Cumulative markup</span><b>61.32%</b></div>
       <div><span class="mono mute">Seasons forecast</span><b>FW25 · SS26</b></div>
@@ -413,7 +447,7 @@ section{padding-block:clamp(80px,11vw,160px)}
       <div>
         <div class="kicker mono mute">Selected work, 2024–2025</div>
         <h2>The <em>work</em> room</h2>
-        <p class="lede">Coursework from FIT's Fashion Business Management program: buying plans, product development, trend forecasts, marketing plans and CAD design. Open any project to see the full boards.</p>
+        <p class="lede">Projects from my Fashion Business Management studies: buying plans, product development, trend forecasts, marketing plans and CAD design. Open any project to see the full boards.</p>
       </div>
     </div>
     <div class="controls">
@@ -426,6 +460,38 @@ section{padding-block:clamp(80px,11vw,160px)}
     <div id="workWrap">
       <div class="grid" id="grid"></div>
       <div class="list" id="list"></div>
+    </div>
+  </section>
+
+  <section id="fitting" class="wrap" style="border-top:1px solid var(--line)">
+    <div class="sec-head rv">
+      <div>
+        <div class="kicker mono mute">3D prototypes built in Style3D</div>
+        <h2>The <em>fitting</em> room</h2>
+        <p class="lede">Garments I patterned and simulated on a 3D avatar. Drag the figure left or right to walk around it, or use the dial to jump to the front, sides and back.</p>
+      </div>
+    </div>
+    <div class="fit-grid">
+      <ol class="fit-list" id="fitList"></ol>
+      <div class="fit-stage" id="fitStage" tabindex="0" role="img" aria-label="Rotating garment view" data-cursor="Drag">
+        <div class="fit-views" id="fitViews"></div>
+        <div class="fit-hint mono" id="fitHint"><span>←</span> Drag to rotate <span>→</span></div>
+      </div>
+      <div class="fit-info">
+        <svg class="dial" id="fitDial" viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="60" cy="60" r="44" fill="none" stroke="var(--line)"/>
+          <g id="dialTicks"></g>
+          <g id="dialHand"><line x1="60" y1="60" x2="60" y2="22" stroke="var(--accent)" stroke-width="2"/><circle cx="60" cy="60" r="3" fill="var(--accent)"/></g>
+        </svg>
+        <div class="dial-btns" id="dialBtns">
+          <button data-a="0">Front</button><button data-a="90">Left</button><button data-a="180">Back</button><button data-a="270">Right</button>
+        </div>
+        <div class="mono mute" id="fitAngle">0° · Front</div>
+        <h3 id="fitName"></h3>
+        <p id="fitDesc" class="mute"></p>
+        <dl class="spec" id="fitSpec"></dl>
+        <button class="mono ul" id="fitAuto" aria-pressed="false">Auto-rotate: off</button>
+      </div>
     </div>
   </section>
 
@@ -528,7 +594,7 @@ section{padding-block:clamp(80px,11vw,160px)}
   <section id="color" class="wrap">
     <div class="sec-head rv">
       <div>
-        <div class="kicker mono mute">Color stories from four projects</div>
+        <div class="kicker mono mute">Color stories from five projects</div>
         <h2>The <em>color</em> library</h2>
         <p class="lede">Each palette was built for a season and a customer. Hover a swatch to open it and click to copy its hex value.</p>
       </div>
@@ -540,7 +606,7 @@ section{padding-block:clamp(80px,11vw,160px)}
     <div class="about-grid">
       <div class="rv">
         <div class="kicker mono mute">About</div>
-        <p class="bio">I'm Murphy (Zhiyi) Tang. I trained in <em>fashion design and engineering</em> at Zhejiang Sci-Tech University and in <em>fashion business management</em> at FIT, so I read a garment from both sides: how it is built, and how it sells through.</p>
+        <p class="bio">I'm Murphy (Zhiyi) Tang. I studied <em>Fashion Business Management</em> at FIT, earning both my AAS and B.S. I read a garment from both sides: how it is built, and how it sells through.</p>
         <p style="margin-top:28px;max-width:56ch;color:var(--mute)">At FIT I worked across the merchandising cycle, from forecasting a Fall 2025 mood to writing purchase orders, planning six months of stock and sourcing gold from Peru. Since then I've applied the same thinking to data: sell-through forecasting at Moose Knuckles, and an M.S. in Integrated Design, Business and Technology at USC.</p>
       </div>
       <div class="cv rv">
@@ -548,8 +614,8 @@ section{padding-block:clamp(80px,11vw,160px)}
           <h4 class="mono mute">Education</h4>
           <dl>
             <dt><b>University of Southern California</b><span>M.S. Integrated Design, Business &amp; Technology</span></dt><dd>Exp. 2028</dd>
-            <dt><b>Fashion Institute of Technology</b><span>AAS Fashion Business Management · GPA 3.88</span></dt><dd>2024–25</dd>
-            <dt><b>Zhejiang Sci-Tech University</b><span>B.E. Fashion Design &amp; Engineering (joint program with FIT)</span></dt><dd>2022–26</dd>
+            <dt><b>Fashion Institute of Technology</b><span>B.S. Fashion Business Management</span></dt><dd>2026</dd>
+            <dt><b>Fashion Institute of Technology</b><span>AAS Fashion Business Management · GPA 3.88</span></dt><dd>2025</dd>
           </dl>
         </div>
         <div>
@@ -635,6 +701,13 @@ const PROJECTS = [
     figs:[['9','Colors in the SS26 palette'],['4','New products developed'],['~175','Free People doors'],['+21%','Brand sales growth, 2023']],
     imgs:P('freepeople',[1,4,5,8,9,10,11,12,13,14,15,16,17,19]),
     caps:['Cover','Target consumer profile','Boho on display: merchandising','Aspirational research','Silhouette trend research','Fabric trend','Color & print trend','Concept: Into the Wild','Color palette','Pitch sheet','New product: basic key item','New product: woven top','New product: printed dress','Collection line-up'] },
+  { id:'wakaka', title:'Wakaka', titleHtml:'Wa<em>kaka</em>', tag:'An SS26 outdoor kidswear line, from customer profile to costed spec sheets.',
+    cat:'product', catLabel:'Product Development', course:'', line:'Kidswear', season:'SS26', term:'', team:'',
+    summary:'Wakaka is a mid-to-high-end functional childrenswear brand that pairs playful design with performance fabrics. Its SS26 collection, Into the Wild, answers families\' post-pandemic pull toward nature with clothes that let kids roam, climb and explore in comfort. The project builds the brand, its customer and retail strategy, then develops the full line down to spec sheets, plus a partnership with the Wildlife Conservation Society.',
+    did:['Target customer, retailer selection (MixC, Intime "In" Series, Galeries Lafayette) and a perceptual map against The North Face Kids and Moody Tiger','Color research: core palette Hidden Haven and fashion palette Little Explorers','Trend research, eight performance fabrics including Pertex, Taslan, CoolMax and Cordura, and abstract camouflage prints','Logo, hangtags and packaging','18 styles with flats and spec sheets: 6 basic, 5 key and 7 fashion items, plus 2 accessories','Wakaka × WCS capsule that donates 5% of profits to wildlife conservation'],
+    figs:[['18','Apparel styles'],['6 · 5 · 7','Basic · key · fashion'],['8','Performance fabrics'],['5%','Profits to WCS']],
+    imgs:P('wakaka',[1,3,6,7,10,11,13,14,15,17,18,21,22,24,26,27,28,29,30,34,37,45,47]),
+    caps:['Cover','Company profile','Target customer profile','Target retailers','Perceptual map','SS26 concept: Into the Wild','Color selection','Color mood board','Core color: Hidden Haven','Color story','Trend research: retro gym tee','Trend mood board','Performance fabrics','Pattern & print','Logo & hangtags','All flats','Colorways','Line-up','Collection on location','Spec sheets: key items','Spec sheets: fashion items','Wakaka × Wildlife Conservation Society','Collaboration capsule'] },
   { id:'pandora', no:'03', title:'Pandora × Apple Watch', titleHtml:'Pandora <em>×</em> Watch', tag:'A marketing plan that puts Pandora\'s charms on the wrist people already check 80 times a day.',
     cat:'marketing', catLabel:'Marketing', course:'FM205', courseName:'Fashion Marketing & Digital Technology', season:'2025', term:'Spring 2025', team:'Group project',
     summary:'Pandora earned $4.6B in 2024 as the affordable-luxury charm brand. The plan proposes a Pandora-branded Apple Watch band to reach millennial and Gen Z customers who want jewelry that also works as tech. It covers market sizing, a concentrated targeting strategy, a persona, a perceptual map and the full marketing mix.',
@@ -686,12 +759,13 @@ const PROJECTS = [
     imgs:P('uo',[1,3,4,5,6,8]),
     caps:['Cover','Women\'s departments','Jeans','Tops','Shoes','Store visit'] }
 ];
-PROJECTS.forEach(p => {
+PROJECTS.forEach((p, i) => {
+  p.no = String(i+1).padStart(2,'0');
   p.full = p.imgs.map((f,i) => `assets/${p.dirs ? p.dirs[i] : p.id}/${f}.jpg`);
   p.thumb = p.imgs.map((f,i) => `thumbs/${p.dirs ? p.dirs[i] : p.id}/${f}.jpg`);
 });
 // card covers: [cover index, hover cycle indices]
-const COVERS = { catch:[4,[10,7,13]], freepeople:[0,[7,12,4]], pandora:[8,[6,7,0]], eighties:[0,[2,8,9]], eutierra:[7,[0,6,8]], bvpuma:[5,[2,3,6]], trends:[0,[7,4,8]], details:[5,[1,4,6]], uo:[2,[3,4,0]] };
+const COVERS = { catch:[4,[10,7,13]], freepeople:[0,[7,12,4]], wakaka:[18,[8,15,11]], pandora:[8,[6,7,0]], eighties:[0,[2,8,9]], eutierra:[7,[0,6,8]], bvpuma:[5,[2,3,6]], trends:[0,[7,4,8]], details:[5,[1,4,6]], uo:[2,[3,4,0]] };
 const CATS = [['all','All'],['planning','Planning & Buying'],['product','Product Development'],['forecast','Forecasting'],['marketing','Marketing'],['sourcing','Sourcing & Import'],['design','Design & CAD']];
 
 /* ---------- clock + theme ---------- */
@@ -739,7 +813,7 @@ addEventListener('scroll', () => {
   hdr.classList.toggle('scrolled', y > 40);
   hdr.classList.toggle('hide', y > lastY && y > 400);
   lastY = y;
-  const secs = ['work','desk','color','about','contact'];
+  const secs = ['work','fitting','desk','color','about','contact'];
   let here = '';
   secs.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight*.4) here = id; });
   $$('nav.main a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+here));
@@ -773,7 +847,7 @@ if (fine && !reduce){
 }
 
 /* ---------- marquee ---------- */
-const brands = ['Free People','Pandora','Zara','Aritzia','Nike','Adidas','Urban Outfitters','Uniqlo','Sweaty Betty','Splits59','Beyond Yoga','On','Set Active','Bottega Veneta','Puma','Reformation','Bath & Body Works','Neiman Marcus','Victoria\'s Secret'];
+const brands = ['Free People','Pandora','Zara','Aritzia','Nike','Adidas','Urban Outfitters','Uniqlo','Sweaty Betty','Splits59','Beyond Yoga','On','Set Active','Bottega Veneta','Puma','Reformation','Bath & Body Works','The North Face Kids','Moody Tiger','Neiman Marcus','Victoria\'s Secret'];
 const half = brands.map(b => `<span>${b}</span><span class="sep">✦</span>`).join('');
 $('#marquee').innerHTML = half + half;
 
@@ -786,11 +860,11 @@ grid.innerHTML = PROJECTS.map(p => { const [c, cyc] = COVERS[p.id];
       ${cyc.map(k => `<img class="alt" data-src="${p.thumb[k]}" alt="">`).join('')}
       <div class="tick">${[c,...cyc].map((_,j) => `<i class="${j===0?'on':''}"></i>`).join('')}</div>
     </div>
-    <div class="cap"><span class="mono mute">${p.no}</span><h3>${p.titleHtml}</h3><span class="mono">${p.course} · ${p.season}</span></div>
+    <div class="cap"><span class="mono mute">${p.no}</span><h3>${p.titleHtml}</h3><span class="mono">${p.course || p.line} · ${p.season}</span></div>
     <div class="sub"><p>${p.tag}</p><span class="mono">${p.catLabel}</span></div>
   </a>`; }).join('');
 list.innerHTML = PROJECTS.map(p => `<a class="row" href="#${p.id}" data-id="${p.id}" data-cat="${p.cat}">
-    <span class="mono mute">${p.no}</span><h3>${p.titleHtml}</h3><span class="c3 mono mute">${p.courseName}</span><span class="c4 mono">${p.catLabel}</span><span class="yr mono mute">${p.term}</span></a>`).join('');
+    <span class="mono mute">${p.no}</span><h3>${p.titleHtml}</h3><span class="c3 mono mute">${p.courseName || p.line}</span><span class="c4 mono">${p.catLabel}</span><span class="yr mono mute">${p.term || p.season}</span></a>`).join('');
 
 function layoutCards(){
   const vis = $$('.card', grid).filter(c => !c.classList.contains('gone'));
@@ -858,15 +932,15 @@ function openProject(id, push = true){
     <h2 id="ovTitle">${p.titleHtml}</h2>
     <p class="tag">${p.tag}</p>
     <dl class="spec">
-      <dt class="mono mute">Course</dt><dd>${p.course} · ${p.courseName}</dd>
-      <dt class="mono mute">Term</dt><dd>${p.term}</dd>
-      <dt class="mono mute">Season</dt><dd>${p.season}</dd>
-      <dt class="mono mute">Credit</dt><dd>${p.team}</dd>
+      ${p.course ? `<dt class="mono mute">Course</dt><dd>${p.course} · ${p.courseName}</dd>` : ''}
+      ${p.term ? `<dt class="mono mute">Term</dt><dd>${p.term}</dd>` : ''}
+      <dt class="mono mute">${p.course ? 'Season' : 'Collection'}</dt><dd>${p.season}${p.course ? '' : ' · ' + p.line}</dd>
+      ${p.team ? `<dt class="mono mute">Credit</dt><dd>${p.team}</dd>` : ''}
     </dl>
     <p class="summary">${p.summary}</p>
     <div><div class="mono mute" style="margin-bottom:10px">What's inside</div><ul>${p.did.map(d => `<li>${d}</li>`).join('')}</ul></div>
     <div class="figs">${p.figs.map(([v,l]) => `<div><b>${v}</b><span class="mono mute">${l}</span></div>`).join('')}</div>`;
-  $('#ovBoards').innerHTML = p.full.map((src, k) => `<figure data-k="${k}" data-cursor="Enlarge"><img class="ld" src="${src}" alt="${p.title}: ${p.caps[k]}" loading="${k<2?'eager':'lazy'}" onload="this.classList.remove('ld')"><figcaption class="mono"><span>${String(k+1).padStart(2,'0')} — ${p.caps[k]}</span><span>${p.course}</span></figcaption></figure>`).join('');
+  $('#ovBoards').innerHTML = p.full.map((src, k) => `<figure data-k="${k}" data-cursor="Enlarge"><img class="ld" src="${src}" alt="${p.title}: ${p.caps[k]}" loading="${k<2?'eager':'lazy'}" onload="this.classList.remove('ld')"><figcaption class="mono"><span>${String(k+1).padStart(2,'0')} — ${p.caps[k]}</span><span>${p.course || p.line}</span></figcaption></figure>`).join('');
   $('#ovNextBig').innerHTML = `<div><div class="mono mute" style="margin-bottom:14px">Next project — ${n.no}</div><h3>${n.titleHtml}</h3></div><div class="im"><img src="${n.thumb[COVERS[n.id][0]]}" alt="" loading="lazy"></div>`;
   $('#ovNextBig').dataset.cursor = 'Next';
   ov.scrollTop = 0; ov.classList.add('open'); document.body.classList.add('locked');
@@ -922,6 +996,71 @@ addEventListener('keydown', e => {
   if (lb.classList.contains('open')){ if (e.key === 'Escape') closeLB(); if (e.key === 'ArrowRight') showLB(lbK+1); if (e.key === 'ArrowLeft') showLB(lbK-1); return; }
   if (ov.classList.contains('open')){ if (e.key === 'Escape') closeProject(); if (e.key === 'ArrowRight') $('#ovNext').click(); if (e.key === 'ArrowLeft') $('#ovPrev').click(); }
 });
+
+/* ---------- fitting room ---------- */
+// Each garment has real renders at 0° (front), 90° (left side) and 180° (back).
+// 270° uses a dedicated render when one exists, otherwise the left side mirrored.
+const GARMENTS = [
+  { id:'coat', name:'Asymmetric Oversized Coat', desc:'A dropped-shoulder coat with an asymmetric front and a single-breasted button stand, cut long and loose over the body.', fabric:'Wool nylon twill', type:'Outerwear', views:{front:1,left:1,back:1} },
+  { id:'shirt', name:'Longline Shirt', desc:'A shirt lengthened into a dress, with contrast side panels and patch pockets that break up the long column.', fabric:'Polyester chiffon, cotton denim', type:'Shirt dress', views:{front:1,left:1,back:1} },
+  { id:'track', name:'Hooded Track Set', desc:'A hooded zip jacket over gathered-cuff trousers, a relaxed athletic set sized for movement.', fabric:'Cotton twill, cotton-poly scuba', type:'Two-piece set', views:{front:1,left:1,back:1} },
+  { id:'gown', name:'Seaside Fishtail Gown', desc:'A draped off-shoulder wrap and bubble peplum over a sheer fishtail skirt, rendered on a beach set.', fabric:'Polyester chiffon, silk charmeuse, cotton sateen', type:'Evening', views:{front:1,left:1,back:1,right:1} }
+];
+const fitViews = $('#fitViews'), fitStage = $('#fitStage');
+let gIdx = 0, ang = 0, vel = 0, dragging = false, lastX = 0, autoRot = false, animTo = null, imgs = [];
+$('#fitList').innerHTML = GARMENTS.map((g,i) => `<li><button aria-pressed="${i===0}" data-i="${i}"><span class="mono n">${String(i+1).padStart(2,'0')}</span><span><b>${g.name}</b><span class="mono">${g.type}</span></span><img src="assets/fit3d/${g.id}/front.jpg" alt="" loading="lazy"></button></li>`).join('');
+function loadGarment(i){
+  gIdx = i; const g = GARMENTS[i];
+  $$('#fitList button').forEach((b,j) => b.setAttribute('aria-pressed', j === i));
+  fitViews.classList.add('swap');
+  setTimeout(() => {
+    const src = v => `assets/fit3d/${g.id}/${v}.jpg`;
+    const list = [['front',0,src('front'),false],['left',90,src('left'),false],['back',180,src('back'),false],['right',270,g.views.right ? src('right') : src('left'),!g.views.right]];
+    fitViews.innerHTML = list.map(([v,a,s,m]) => `<img data-a="${a}" class="${g.cover?'cover':''}" src="${s}" alt="${g.name}, ${v} view${m?' (mirrored)':''}" style="${m?'--m:-1;':''}">`).join('');
+    imgs = $$('img', fitViews); render(); fitViews.classList.remove('swap');
+  }, 200);
+  $('#fitName').textContent = g.name; $('#fitDesc').textContent = g.desc;
+  $('#fitSpec').innerHTML = `<dt class="mono mute">Category</dt><dd>${g.type}</dd><dt class="mono mute">Fabrics</dt><dd>${g.fabric}</dd><dt class="mono mute">Software</dt><dd>Style3D</dd>`;
+}
+const norm = a => ((a % 360) + 360) % 360;
+const VIEW = {0:'Front',90:'Left',180:'Back',270:'Right'};
+function render(){
+  const a = norm(ang);
+  imgs.forEach(im => {
+    let d = Math.abs(a - +im.dataset.a); d = Math.min(d, 360 - d);
+    const w = Math.max(0, 1 - d/90), m = im.style.getPropertyValue('--m') || 1;
+    const sx = (0.86 + 0.14*w) * m;
+    im.style.opacity = w; im.style.transform = `scaleX(${sx})`; im.style.zIndex = Math.round(w*10);
+  });
+  $('#dialHand').style.transform = `rotate(${a}deg)`;
+  const near = norm(Math.round(a/90)*90);
+  $('#fitAngle').textContent = `${Math.round(a)}° · ${VIEW[near]}${near === 270 && !GARMENTS[gIdx].views.right ? ' (mirrored)' : ''}`;
+  $$('#dialBtns button').forEach(b => b.classList.toggle('on', +b.dataset.a === near));
+}
+$('#dialTicks').innerHTML = [[0,'F'],[90,'L'],[180,'B'],[270,'R']].map(([a,l]) => { const r = (a-90)*Math.PI/180;
+  return `<line x1="${60+40*Math.cos(r)}" y1="${60+40*Math.sin(r)}" x2="${60+48*Math.cos(r)}" y2="${60+48*Math.sin(r)}" stroke="var(--mute)"/><text x="${60+56*Math.cos(r)}" y="${60+56*Math.sin(r)+3}" text-anchor="middle">${l}</text>`; }).join('');
+function tween(target){
+  let d = norm(target) - norm(ang); if (d > 180) d -= 360; if (d < -180) d += 360;
+  animTo = ang + d;
+}
+function loopFit(){
+  if (!dragging){
+    if (animTo !== null){ ang += (animTo - ang) * .14; if (Math.abs(animTo - ang) < .1){ ang = animTo; animTo = null; } }
+    else if (Math.abs(vel) > .05){ ang += vel; vel *= .92; if (Math.abs(vel) <= .05) tween(Math.round(ang/90)*90); }
+    else if (autoRot) ang += .35;
+  }
+  render(); requestAnimationFrame(loopFit);
+}
+fitStage.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; vel = 0; animTo = null; fitStage.setPointerCapture(e.pointerId); fitStage.classList.add('used'); });
+fitStage.addEventListener('pointermove', e => { if (!dragging) return; const dx = e.clientX - lastX; lastX = e.clientX; ang -= dx * .45; vel = -dx * .45; });
+const endDrag = () => { if (!dragging) return; dragging = false; if (reduce || Math.abs(vel) < 1) { vel = 0; tween(Math.round(ang/90)*90); } };
+fitStage.addEventListener('pointerup', endDrag); fitStage.addEventListener('pointercancel', endDrag);
+fitStage.addEventListener('keydown', e => { if (e.key === 'ArrowRight'){ e.preventDefault(); tween(Math.round(ang/90)*90 + 90); } if (e.key === 'ArrowLeft'){ e.preventDefault(); tween(Math.round(ang/90)*90 - 90); } });
+$('#dialBtns').addEventListener('click', e => { const b = e.target.closest('button'); if (b){ autoRot = false; setAuto(false); tween(+b.dataset.a); } });
+$('#fitList').addEventListener('click', e => { const b = e.target.closest('button'); if (b) loadGarment(+b.dataset.i); });
+function setAuto(on){ autoRot = on; $('#fitAuto').setAttribute('aria-pressed', on); $('#fitAuto').textContent = 'Auto-rotate: ' + (on ? 'on' : 'off'); if (!on && animTo === null) tween(Math.round(ang/90)*90); }
+$('#fitAuto').addEventListener('click', () => setAuto(!autoRot));
+loadGarment(0); requestAnimationFrame(loopFit);
 
 /* ---------- desk: tabs ---------- */
 function selectTab(id){
@@ -1047,6 +1186,7 @@ const PALETTES = [
   { name:'Travel Back to the <em>\'80s</em>', src:'FW25 forecast · FM245', pid:'eighties', c:[['Upside Down','P 121-3 C','#BFDCE1'],['Mystery','20-0124 TPM','#2E1A2C'],['Bravery','609 U','#E9E08C'],['Hawkins','2372 XGC','#222A86'],['Vecna','179 CP','#D2523C'],['1980s','P 3-16 U','#727146'],['Supernatural','12-0709 TPG','#E6D8C3'],['Eleven','19-1557 TCX','#962A34'],['Dimension','15-3919 TCX','#9AAED4']] },
   { name:'Into the <em>Wild</em>', src:'SS26 · Free People · FM204', pid:'freepeople', c:[['Ripe Banana','039-81-31','#EECB65'],['Earth Brown','026-32-08','#5C4D40'],['Safari Red','19-1664','#B53D35'],['Ivory Dune','11-4302','#ECE9E1'],['Blue Mirage','12-4207','#C6D7EE'],['Dusk Sky','15-3919','#86A3DE'],['Desert Sand','14-10-36','#A5844F'],['Red Clay','19-1557','#8E3B36'],['Wild River','19-4034','#1F3456']] },
   { name:'Spring into the <em>Future</em>', src:'Pandora × Apple Watch · FM205', pid:'pandora', c:[['Pandora Pink','Rose gold','#C58C82'],['Solar Flare','Gold','#D8B85E'],['Apple Chrome','Silver','#C9C9C9'],['iPod Nano Blue','','#93BCD2'],['Virtual Yellow','','#DFD78F'],['Cosmic Blush','','#E0C3B3'],['Electro Green','','#9DB86A'],['Techno Tangerine','','#DFA864'],['AI Clouds','','#DCD3C3']] },
+  { name:'Hidden <em>Haven</em>', src:'SS26 · Wakaka kidswear', pid:'wakaka', c:[['River Splash','18-4148 TCX','#2A5698'],['Moon Dust','14-3710 TCX','#BBB3CC'],['Pebble Hop','14-4502 TCX','#B8BCB6'],['Mossy Mischief','17-5513 TCX','#5B7B72'],['Forest Hideout','19-5220 TCX','#233D3D']] },
   { name:'The <em>Road</em>', src:'Horizontal Speed · AR115', pid:'bvpuma', c:[['Brakelight','','#A13234'],['Lamp','','#F6DF9B'],['Moss','','#B4C1A9'],['Concrete','','#C8C6CD'],['Cloud','','#B3C9E6'],['Cobalt','','#454D68']] }
 ];
 const lum = h => { const n = parseInt(h.slice(1),16), r = n>>16&255, g = n>>8&255, b = n&255; return (0.299*r + 0.587*g + 0.114*b)/255; };
