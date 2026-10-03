@@ -37,7 +37,7 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;font-weight:400;
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;font-weight:400;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .5s var(--ease),color .5s var(--ease)}
 body.locked{overflow:hidden}
 a{color:inherit;text-decoration:none}
@@ -46,7 +46,7 @@ img{display:block;max-width:100%}
 ::selection{background:var(--accent);color:var(--accent-ink)}
 :focus-visible{outline:1.5px solid var(--accent);outline-offset:3px}
 .wrap{padding-inline:var(--gutter)}
-.mono{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.mono{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
 .mute{color:var(--mute)}
 .display{font-family:var(--display);font-weight:400;letter-spacing:-.02em;font-optical-sizing:auto}
 h1,h2,h3{margin:0;text-wrap:balance;font-weight:400}
@@ -67,10 +67,10 @@ header.top{position:fixed;inset:0 0 auto 0;z-index:80;padding-top:env(safe-area-
 header.top .bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding-block:18px}
 header.top.scrolled{background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 header.top.hide{transform:translateY(-110%)}
-.brand{font-family:var(--display);font-size:20px;letter-spacing:-.01em}
+.brand{font-family:var(--display);font-size:23px;letter-spacing:-.01em}
 .brand i{font-style:italic}
-nav.main{display:flex;gap:26px}
-nav.main a{position:relative;font-size:13px;letter-spacing:.02em}
+nav.main{display:flex;gap:30px}
+nav.main a{position:relative;font-size:15.5px;letter-spacing:.01em}
 nav.main a::after,.ul::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .5s var(--ease)}
 nav.main a:hover::after,nav.main a.active::after,.ul:hover::after{transform:scaleX(1);transform-origin:0 50%}
 .ul{position:relative}
@@ -84,8 +84,11 @@ nav.main a:hover::after,nav.main a.active::after,.ul:hover::after{transform:scal
 
 /* hero */
 .hero{padding-top:calc(110px + env(safe-area-inset-top,0px));padding-bottom:40px;position:relative}
-.hero-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--line);padding-bottom:14px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end;margin-top:clamp(28px,5vw,64px)}
+.hero-intro{display:grid;gap:10px;margin-bottom:clamp(20px,3vw,36px)}
+.hero-intro .eyebrow{font-family:var(--mono);font-size:clamp(13px,1.1vw,15px);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px}
+.hero-intro .eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
+.hero-intro .creds{font-size:clamp(16px,1.35vw,19px);line-height:1.45;color:var(--ink)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end}
 .name{font-family:var(--display);font-size:clamp(64px,12.5vw,200px);line-height:.92;letter-spacing:-.02em;font-weight:400}
 .name .line{display:block;overflow:hidden;padding-bottom:.22em;margin-bottom:-.16em}
 .name .line span{display:inline-block;animation:rise 1.2s var(--ease) .1s backwards}
@@ -131,20 +134,20 @@ section{padding-block:clamp(80px,11vw,160px)}
 .sec-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
 .sec-head h2{font-family:var(--display);font-size:clamp(44px,7vw,108px);line-height:.92;letter-spacing:-.015em}
 .sec-head h2 em{font-style:italic}
-.sec-head .lede{max-width:46ch;color:var(--mute);margin-top:18px}
-.kicker{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+.sec-head .lede{max-width:50ch;color:var(--mute);margin-top:18px;font-size:17px}
+.kicker{display:flex;gap:14px;align-items:center;margin-bottom:18px;font-size:14px;letter-spacing:.1em}
 .kicker::before{content:"";width:28px;height:1px;background:currentColor}
 
 /* work controls */
 .controls{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:12px;margin-bottom:40px;position:sticky;top:calc(58px + env(safe-area-inset-top,0px));z-index:20;background:var(--paper)}
 .filters{display:flex;gap:6px;flex-wrap:wrap}
-.chip{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:30px;border:1px solid transparent;transition:border-color .3s,background .3s,color .3s}
-.chip sup{font-size:9px;margin-left:3px;color:var(--mute)}
+.chip{font-family:var(--mono);font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;padding:9px 15px;border:1px solid var(--line);border-radius:30px;border:1px solid transparent;transition:border-color .3s,background .3s,color .3s}
+.chip sup{font-size:10.5px;margin-left:3px;color:var(--mute)}
 .chip:hover{border-color:var(--line)}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .chip[aria-pressed="true"] sup{color:inherit;opacity:.6}
 .viewtoggle{display:flex;gap:2px;border:1px solid var(--line);border-radius:30px;padding:3px}
-.viewtoggle button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:30px;transition:background .3s,color .3s}
+.viewtoggle button{font-family:var(--mono);font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;padding:7px 15px;border-radius:30px;transition:background .3s,color .3s}
 .viewtoggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 
 /* grid view */
@@ -167,7 +170,7 @@ section{padding-block:clamp(80px,11vw,160px)}
 .card .cap h3{font-family:var(--display);font-size:clamp(26px,2.6vw,38px);line-height:1;letter-spacing:-.02em}
 .card .cap h3 em{font-style:italic}
 .card .sub{display:flex;justify-content:space-between;gap:12px;margin-top:10px;color:var(--mute)}
-.card .sub p{font-size:14px;max-width:44ch}
+.card .sub p{font-size:16px;max-width:44ch}
 .card.gone{display:none}
 @media (max-width:820px){.card,.card.w7,.card.w5{grid-column:1/-1;padding-top:0}}
 
@@ -189,26 +192,27 @@ section{padding-block:clamp(80px,11vw,160px)}
 .peek img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
 /* overlay */
-.ov{position:fixed;inset:0;z-index:100;background:var(--paper);transform:translateY(100%);transition:transform .9s var(--ease);overflow-y:auto;overscroll-behavior:contain;visibility:hidden;transition:transform .9s var(--ease),visibility 0s linear .9s}
+.ov{position:fixed;inset:0;z-index:100;background:var(--paper);transform:translateY(100%);transition:transform .9s var(--ease);display:flex;flex-direction:column;overflow:hidden;visibility:hidden;transition:transform .9s var(--ease),visibility 0s linear .9s}
 .ov.open{transform:none;visibility:visible;transition:transform .9s var(--ease),visibility 0s}
-.ov-bar{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:calc(16px + env(safe-area-inset-top,0px)) 16px;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.ov-bar{flex:none;position:relative;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:calc(16px + env(safe-area-inset-top,0px)) 16px;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .ov-bar .nav{display:flex;gap:18px;align-items:center}
 .close{display:flex;gap:10px;align-items:center}
 .close .x{width:30px;height:30px;border:1px solid var(--ink);border-radius:50%;position:relative;transition:transform .5s var(--ease),background .3s}
 .close .x::before,.close .x::after{content:"";position:absolute;left:8px;right:8px;top:50%;height:1px;background:var(--ink);transform:rotate(45deg)}
 .close .x::after{transform:rotate(-45deg)}
 .close:hover .x{transform:rotate(90deg)}
-.ov-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,72px);padding-block:clamp(36px,5vw,72px)}
-.ov-info{position:sticky;top:96px;align-self:start;display:grid;gap:28px}
+.ov-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,72px)}
+.ov-col{height:100%;overflow-y:auto;overscroll-behavior:contain;padding-block:clamp(32px,4vw,64px);scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.ov-info{display:grid;gap:28px;align-content:start;padding-right:8px}
 .ov-info h2{font-family:var(--display);font-size:clamp(48px,6.4vw,104px);line-height:.9;letter-spacing:-.015em}
 .ov-info h2 em{font-style:italic}
 .ov-info .tag{font-family:var(--display);font-style:italic;font-size:clamp(19px,1.6vw,24px);line-height:1.3}
 .spec{display:grid;grid-template-columns:110px minmax(0,1fr);border-top:1px solid var(--line)}
 .spec dt,.spec dd{margin:0;padding-block:9px;border-bottom:1px solid var(--line)}
-.spec dd{font-size:14px}
-.ov-info .summary{max-width:58ch;font-size:15.5px}
+.spec dd{font-size:15.5px}
+.ov-info .summary{max-width:58ch;font-size:16.5px;line-height:1.6}
 .ov-info ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
-.ov-info li{display:grid;grid-template-columns:22px minmax(0,1fr);font-size:14.5px}
+.ov-info li{display:grid;grid-template-columns:22px minmax(0,1fr);font-size:15.5px}
 .ov-info li::before{content:"—";color:var(--accent)}
 .figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
 .figs div{background:var(--paper);padding:14px;display:grid;gap:2px}
@@ -219,14 +223,14 @@ section{padding-block:clamp(80px,11vw,160px)}
 .boards figure img.ld{opacity:0}
 .boards figure:hover img{transform:scale(1.015)}
 .boards figcaption{display:flex;justify-content:space-between;padding-top:8px;color:var(--mute);background:var(--paper)}
-.next-proj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;border-top:1px solid var(--line);padding-block:48px 64px;cursor:pointer}
+.next-proj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;border-top:1px solid var(--line);margin-top:56px;padding-block:40px 24px;cursor:pointer}
 .next-proj h3{font-family:var(--display);font-size:clamp(40px,7vw,110px);line-height:.9;letter-spacing:-.015em;transition:color .4s}
 .next-proj h3 em{font-style:italic}
 .next-proj:hover h3{color:var(--accent)}
 .next-proj .im{aspect-ratio:16/9;overflow:hidden;background:var(--surface)}
 .next-proj .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 .next-proj:hover .im img{transform:scale(1.06)}
-@media (max-width:900px){.ov-body{grid-template-columns:1fr}.ov-info{position:static}.next-proj{grid-template-columns:1fr}}
+@media (max-width:900px){.ov{overflow-y:auto;display:block}.ov-bar{position:sticky}.ov-body{grid-template-columns:1fr}.ov-col{height:auto;overflow:visible}.next-proj{grid-template-columns:1fr}}
 
 /* lightbox (always dark: it frames the boards like a viewing room) */
 .lb{position:fixed;inset:0;z-index:150;background:var(--veil);display:grid;grid-template-rows:auto minmax(0,1fr) auto;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s;color:#EDEDE8}
@@ -271,7 +275,7 @@ section{padding-block:clamp(80px,11vw,160px)}
 .dial text{font-family:var(--mono);font-size:9px;fill:var(--mute);letter-spacing:.06em}
 #dialHand{transform-origin:60px 60px}
 .dial-btns{display:flex;gap:4px;flex-wrap:wrap}
-.dial-btns button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border:1px solid var(--line);border-radius:30px;transition:background .3s,color .3s,border-color .3s}
+.dial-btns button{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border:1px solid var(--line);border-radius:30px;transition:background .3s,color .3s,border-color .3s}
 .dial-btns button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 @media (max-width:980px){.fit-grid{grid-template-columns:1fr}.fit-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));column-gap:16px}.fit-stage{max-height:78vh;width:100%;margin-inline:auto}}
 
@@ -301,7 +305,7 @@ section{padding-block:clamp(80px,11vw,160px)}
 .legend span{display:flex;gap:8px;align-items:center}
 .legend i{width:10px;height:10px;display:inline-block}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:30px;padding:3px;gap:2px;margin-bottom:18px}
-.seg button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:30px;transition:background .3s,color .3s}
+.seg button{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:30px;transition:background .3s,color .3s}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .vrow{display:grid;grid-template-columns:110px minmax(0,1fr) 70px;gap:14px;align-items:center;padding-block:12px;border-bottom:1px solid var(--line);cursor:default}
 .vrow:first-of-type{border-top:1px solid var(--line)}
@@ -347,18 +351,19 @@ section{padding-block:clamp(80px,11vw,160px)}
 
 /* about */
 .about-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,5vw,96px)}
-.bio{font-family:var(--display);font-size:clamp(24px,2.7vw,40px);line-height:1.2;letter-spacing:-.015em}
+.bio{font-family:var(--display);font-size:clamp(28px,3vw,44px);line-height:1.2;letter-spacing:-.015em}
 .bio em{font-style:italic;color:var(--accent)}
 .cv{display:grid;gap:40px}
-.cv h4{margin:0 0 10px}
+.cv h4{margin:0 0 10px;font-size:14px;letter-spacing:.1em}
 .cv dl{margin:0;display:grid;grid-template-columns:minmax(0,1fr) auto;border-top:1px solid var(--line)}
-.cv dt,.cv dd{margin:0;padding-block:11px;border-bottom:1px solid var(--line)}
-.cv dt b{font-weight:500;display:block}
-.cv dt span{color:var(--mute);font-size:13.5px}
-.cv dd{text-align:right;color:var(--mute);font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding-left:12px}
+.cv dt,.cv dd{margin:0;padding-block:16px;border-bottom:1px solid var(--line)}
+.cv dt b{font-weight:600;display:block;font-size:18px}
+.cv dt em{display:block;font-style:normal;font-size:15.5px;margin-top:2px}
+.cv dt span{display:block;color:var(--mute);font-size:15.5px;line-height:1.6;margin-top:6px;max-width:62ch}
+.cv dd{text-align:right;color:var(--mute);font-family:var(--mono);font-size:13px;letter-spacing:.04em;padding-left:12px}
 .courses{display:flex;flex-wrap:wrap;gap:6px}
-.courses span{border:1px solid var(--line);border-radius:30px;padding:6px 11px;font-size:13px;transition:background .3s,color .3s,border-color .3s}
-.courses span b{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.05em;margin-right:6px;color:var(--mute)}
+.courses span{border:1px solid var(--line);border-radius:30px;padding:8px 13px;font-size:15px;transition:background .3s,color .3s,border-color .3s}
+.courses span b{font-family:var(--mono);font-weight:500;font-size:12.5px;letter-spacing:.05em;margin-right:6px;color:var(--mute)}
 .courses span.lit{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .courses span.lit b{color:inherit;opacity:.65}
 @media (max-width:900px){.about-grid{grid-template-columns:1fr}}
@@ -410,13 +415,12 @@ section{padding-block:clamp(80px,11vw,160px)}
 
 <main id="home">
   <div class="hero wrap">
-    <div class="hero-meta mono">
-      <span>Portfolio · Fashion Planning &amp; Merchandising</span>
-      <span class="mute">Fashion Institute of Technology, New York</span>
-      <span>B.S. &amp; AAS Fashion Business Management</span>
-    </div>
     <div class="hero-grid">
       <div>
+        <div class="hero-intro">
+          <p class="eyebrow">Fashion Planning &amp; Merchandising Portfolio</p>
+          <p class="creds">B.S. &amp; AAS in Fashion Business Management<br>Fashion Institute of Technology, New York</p>
+        </div>
         <h1 class="name" id="name" aria-label="Murphy Tang">
           <span class="line"><span>Murphy</span></span>
           <span class="line"><span><em>Tang</em></span></span>
@@ -607,7 +611,7 @@ section{padding-block:clamp(80px,11vw,160px)}
       <div class="rv">
         <div class="kicker mono mute">About</div>
         <p class="bio">I'm Murphy (Zhiyi) Tang. I studied <em>Fashion Business Management</em> at FIT, earning both my AAS and B.S. I read a garment from both sides: how it is built, and how it sells through.</p>
-        <p style="margin-top:28px;max-width:56ch;color:var(--mute)">At FIT I worked across the merchandising cycle, from forecasting a Fall 2025 mood to writing purchase orders, planning six months of stock and sourcing gold from Peru. Since then I've applied the same thinking to data: sell-through forecasting at Moose Knuckles, and an M.S. in Integrated Design, Business and Technology at USC.</p>
+        <p style="margin-top:28px;max-width:56ch;color:var(--mute);font-size:18px;line-height:1.6">At FIT I worked across the merchandising cycle, from forecasting a Fall 2025 mood to writing purchase orders, planning six months of stock and sourcing gold from Peru. In industry I've prepared SS26 line presentations for Macy's, Nordstrom and Bloomingdale's at Hanro and built sell-through forecasts at Moose Knuckles. Next is an M.S. in Integrated Design, Business and Technology at USC.</p>
       </div>
       <div class="cv rv">
         <div>
@@ -621,8 +625,9 @@ section{padding-block:clamp(80px,11vw,160px)}
         <div>
           <h4 class="mono mute">Experience</h4>
           <dl>
-            <dt><b>Moose Knuckles, Shanghai</b><span>Data Analyst Intern, Merchandise. Built a SQL sell-through forecast with under 1.5% error.</span></dt><dd>Summer 2025</dd>
-            <dt><b>Hangzhou Dayu Network Technology</b><span>Marketing &amp; Resource Integration Intern</span></dt><dd>2025–26</dd>
+            <dt><b>Moose Knuckles, Shanghai</b><em>Data Analyst Intern, Merchandise Department</em><span>Built a sell-through forecasting model from historical sell-down curves, used for Fall/Winter 2025 replenishment with under 1.5% prediction error. Dashboards tracking sell-through and inventory turn contributed to a 2% YoY lift in Q3 sell-through. Tracked bulk orders and delivery schedules for China-market styles in the SS26 global launch.</span></dt><dd>Jun–Aug 2025</dd>
+            <dt><b>House of NightFly, New York</b><em>Social Media Marketing Analyst Intern</em><span>Coordinated with Macy's and Nordstrom on early collaboration opportunities to support U.S. market entry, and ran 5 U.S. creator partnerships that generated 10,000+ views.</span></dt><dd>Jan–May 2025</dd>
+            <dt><b>Hanro, New York</b><em>Sales Intern</em><span>Prepared SS26 line presentations for buying meetings with Macy's, Nordstrom and Bloomingdale's, curating 50+ styles and tailoring assortment recommendations to each retailer, which drove $80K+ in orders. Reached 90%+ conversion at a sample sale.</span></dt><dd>Oct 2024–Jan 2025</dd>
           </dl>
         </div>
         <div>
@@ -663,10 +668,12 @@ section{padding-block:clamp(80px,11vw,160px)}
     </div>
   </div>
   <div class="ov-body wrap">
-    <aside class="ov-info" id="ovInfo"></aside>
-    <div class="boards" id="ovBoards"></div>
+    <aside class="ov-info ov-col" id="ovInfo"></aside>
+    <div class="ov-col" id="ovRight">
+      <div class="boards" id="ovBoards"></div>
+      <div class="next-proj" id="ovNextBig"></div>
+    </div>
   </div>
-  <div class="wrap"><div class="next-proj" id="ovNextBig"></div></div>
 </div>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Board viewer">
@@ -943,7 +950,7 @@ function openProject(id, push = true){
   $('#ovBoards').innerHTML = p.full.map((src, k) => `<figure data-k="${k}" data-cursor="Enlarge"><img class="ld" src="${src}" alt="${p.title}: ${p.caps[k]}" loading="${k<2?'eager':'lazy'}" onload="this.classList.remove('ld')"><figcaption class="mono"><span>${String(k+1).padStart(2,'0')} — ${p.caps[k]}</span><span>${p.course || p.line}</span></figcaption></figure>`).join('');
   $('#ovNextBig').innerHTML = `<div><div class="mono mute" style="margin-bottom:14px">Next project — ${n.no}</div><h3>${n.titleHtml}</h3></div><div class="im"><img src="${n.thumb[COVERS[n.id][0]]}" alt="" loading="lazy"></div>`;
   $('#ovNextBig').dataset.cursor = 'Next';
-  ov.scrollTop = 0; ov.classList.add('open'); document.body.classList.add('locked');
+  ov.scrollTop = 0; $$('.ov-col').forEach(c => c.scrollTop = 0); ov.classList.add('open'); document.body.classList.add('locked');
   cur.classList.remove('on');
   if (push && location.hash !== '#'+id) history.pushState({p:id}, '', '#'+id);
   setTimeout(() => $('#ovClose').focus({preventScroll:true}), 50);
