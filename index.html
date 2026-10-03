@@ -202,7 +202,8 @@ section{padding-block:clamp(80px,11vw,160px)}
 .close .x::after{transform:rotate(-45deg)}
 .close:hover .x{transform:rotate(90deg)}
 .ov-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,72px)}
-.ov-col{height:100%;overflow-y:auto;overscroll-behavior:contain;padding-block:clamp(32px,4vw,64px);scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.ov-col{height:100%;overflow-y:auto;overscroll-behavior:contain;padding-block:clamp(32px,4vw,64px);scrollbar-width:thin;scrollbar-color:var(--mute) transparent}
+.ov-info.more{-webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent);mask-image:linear-gradient(to bottom,#000 82%,transparent)}
 .ov-info{display:grid;gap:28px;align-content:start;padding-right:8px}
 .ov-info h2{font-family:var(--display);font-size:clamp(48px,6.4vw,104px);line-height:.9;letter-spacing:-.015em}
 .ov-info h2 em{font-style:italic}
@@ -929,6 +930,9 @@ if (fine){
 
 /* ---------- overlay ---------- */
 const ov = $('#ov'); let curIdx = -1, lastFocus = null;
+const ovInfoEl = $('#ovInfo');
+function fadeInfo(){ ovInfoEl.classList.toggle('more', innerWidth > 900 && ovInfoEl.scrollTop + ovInfoEl.clientHeight < ovInfoEl.scrollHeight - 4); }
+ovInfoEl.addEventListener('scroll', fadeInfo, {passive:true}); addEventListener('resize', fadeInfo);
 function openProject(id, push = true){
   const i = PROJECTS.findIndex(p => p.id === id); if (i < 0) return;
   curIdx = i; const p = PROJECTS[i], n = PROJECTS[(i+1) % PROJECTS.length];
@@ -950,7 +954,7 @@ function openProject(id, push = true){
   $('#ovBoards').innerHTML = p.full.map((src, k) => `<figure data-k="${k}" data-cursor="Enlarge"><img class="ld" src="${src}" alt="${p.title}: ${p.caps[k]}" loading="${k<2?'eager':'lazy'}" onload="this.classList.remove('ld')"><figcaption class="mono"><span>${String(k+1).padStart(2,'0')} — ${p.caps[k]}</span><span>${p.course || p.line}</span></figcaption></figure>`).join('');
   $('#ovNextBig').innerHTML = `<div><div class="mono mute" style="margin-bottom:14px">Next project — ${n.no}</div><h3>${n.titleHtml}</h3></div><div class="im"><img src="${n.thumb[COVERS[n.id][0]]}" alt="" loading="lazy"></div>`;
   $('#ovNextBig').dataset.cursor = 'Next';
-  ov.scrollTop = 0; $$('.ov-col').forEach(c => c.scrollTop = 0); ov.classList.add('open'); document.body.classList.add('locked');
+  ov.scrollTop = 0; $$('.ov-col').forEach(c => c.scrollTop = 0); requestAnimationFrame(fadeInfo); ov.classList.add('open'); document.body.classList.add('locked');
   cur.classList.remove('on');
   if (push && location.hash !== '#'+id) history.pushState({p:id}, '', '#'+id);
   setTimeout(() => $('#ovClose').focus({preventScroll:true}), 50);
